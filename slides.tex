@@ -124,9 +124,161 @@ You get 2-3 slides to discuss your toolchain and what you like/dislike about it.
 \end{frame}
 
 \section{Sebastian}
-\begin{frame}[fragile]{EyeCatcher}
+\begin{frame}[fragile]{\textbf{Goal:} Machine Learning on Embedded Systems $\to$ \texttt{C/C++} is de-facto standard}
+    \pause
+    \begin{columns}
+        \begin{column}{0.6\textwidth}
+            \includegraphics[width=\textwidth]{img/sebastian-cpp.png}
+        \end{column}
+        
+        \begin{column}{0.4\textwidth}
+            \vspace{0.2cm}
+
+            PROs
+            \begin{itemize}
+                \item Fast \& Small memory footprint
+                \item We know what we are doing
+                \item `Old'/Well-known tool-chain
+            \end{itemize}
+            CONs
+            \begin{itemize}
+                \item Sometimes tedious work
+                \item Somewhat difficult to debug
+            \end{itemize}
+        \end{column}
+    \end{columns}
+
+    \pause
+    \vspace{-0.2cm}
+    \textbf{Thus} Keep speed, but make tedious work less tedious
+    \pause 
+
+    \begin{itemize}
+         \item \texttt{QTCreator} In-built debugger / project management \pause
+         %\item \texttt{CMake/Make} Build-System for dependency management
+         \item \texttt{STL} For convenience function (e.g. \texttt{std::map}, \texttt{std::vector} etc.) \pause
+         \item \texttt{OpenBlas/MKL} For (fast) math functions (e.g. \texttt{LAPACKE\_spotri}) \pause
+         \item \texttt{OpenMP} For parallelization (e.g. \texttt{\#pragma omp parallel}) \pause
+         \item \texttt{Python (etal.)} Data pre-processing ($\to$ export data as CSV)
+     \end{itemize} 
 \end{frame}
-\begin{frame}[t,fragile]{Review}
+
+\begin{frame}[t,fragile]{Excursus: FPGA Development}
+    \hspace{-0.4cm}\textbf{General Workflow}
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[rectangle,draw, fill=blue!20] at (0,0) {high level synthesis};
+            \node[rectangle,draw, fill=blue!20] at (0,1) {HDL programming};
+            \node[rectangle,draw] at (3,1) {synthesis};
+            \node[rectangle,draw] at (5.5,1) {place \& route};
+            \node[rectangle,draw] at (6.5,0) {SDK programming};
+            \node[rectangle,draw] at (8.0,1) {FPGA};
+            %smooth, tension=0.05
+            %\draw plot [->,thick]  coordinates {(1.68,0) (1.88, 0.) (1.88,1) (2.15,1)};
+            \draw[->,thick] (1.68,0) -- (1.88, 0) -- (1.88,1) -- (2.15,1);
+            \draw[->,thick] (1.65,1) -- (2.15,1);
+            \draw[->,thick] (3.87,1) -- (4.23,1);
+            \draw[->, thick] (6.77,1.2) -- (6.97,1.2) -- (6.97, 0.5) -- (4.2,0.5) -- (4.2, 0) -- (4.84, 0);
+            \draw[->, thick] (8.16,0) -- (8.7,0) -- (8.7, 0.5) -- (7.1,0.5) -- (7.1, 0.9) -- (7.36,0.9);
+            \draw[->,thick] (6.77,1.2) -- (7.36,1.2);
+        \end{tikzpicture}
+    \end{center}
+
+    \pause
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \textbf{Hardware Description Language (HDL)}
+            \begin{itemize}
+                \item Bit-Level/Register-Transfer-Level
+                \item Usually simulated before put on an FPGA
+                \item Slow / Tedious to develop, but ultimate control over hardware
+                \item \textbf{Xilinx FPGAs} \texttt{Vivado}
+            \end{itemize}
+        \end{column}
+        
+        \begin{column}{0.5\textwidth}
+            \textbf{High Level Synthesis (HLS)}
+            \begin{itemize}
+                \item Compile \texttt{C/C++/OpenCL} $\to$ HDL
+                \item Usually tested on CPU, then put on FPGA
+                \item Faster to develop with, but less control over hardware
+                \item \textbf{Xilinx FPGAs} \texttt{Vivado HLS} or \texttt{SDSoC}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}[t,fragile]{Excursus: FPGA Development}
+    \hspace{-0.4cm}\textbf{General Workflow}
+
+    \begin{center}
+        \begin{tikzpicture}
+            \node[rectangle,draw] at (0,0) {high level synthesis};
+            \node[rectangle,draw] at (0,1) {HDL programming};
+            \node[rectangle,draw, fill=blue!20] at (3,1) {synthesis};
+            \node[rectangle,draw, fill=blue!20] at (5.5,1) {place \& route};
+            \node[rectangle,draw] at (6.5,0) {SDK programming};
+            \node[rectangle,draw] at (8.0,1) {FPGA};
+            %smooth, tension=0.05
+            %\draw plot [->,thick]  coordinates {(1.68,0) (1.88, 0.) (1.88,1) (2.15,1)};
+            \draw[->,thick] (1.68,0) -- (1.88, 0) -- (1.88,1) -- (2.15,1);
+            \draw[->,thick] (1.65,1) -- (2.15,1);
+            \draw[->,thick] (3.87,1) -- (4.23,1);
+            \draw[->, thick] (6.77,1.2) -- (6.97,1.2) -- (6.97, 0.5) -- (4.2,0.5) -- (4.2, 0) -- (4.84, 0);
+            \draw[->, thick] (8.16,0) -- (8.7,0) -- (8.7, 0.5) -- (7.1,0.5) -- (7.1, 0.9) -- (7.36,0.9);
+            \draw[->,thick] (6.77,1.2) -- (7.36,1.2);
+        \end{tikzpicture}
+    \end{center}
+
+    \pause
+    \textbf{Synthesis} Calculate specific FPGA configurations 
+    
+    \textbf{Place \& Route} Calculate signal routing 
+    
+    \pause
+    \textbf{Xilinx FPGAs} Vivado \texttt{or} SDSoC
+    \begin{itemize}
+        \item Takes a long time $\to$ store as many checkpoints as possible
+        \item Start with small configurations, e.g. clock hat $100$Mhz
+        \item Start with less aggressive optimizations
+    \end{itemize}
+    $\Rightarrow$ HW Description (XML-File), Block RAM Memory Map (BMM-File), FPGA Bitsream 
+\end{frame} 
+
+\begin{frame}[t,fragile]{Excursus: FPGA Development}
+    \hspace{-0.4cm}\textbf{General Workflow}
+    \begin{center}
+        \begin{tikzpicture}
+            \node[rectangle,draw] at (0,0) {high level synthesis};
+            \node[rectangle,draw] at (0,1) {HDL programming};
+            \node[rectangle,draw] at (3,1) {synthesis};
+            \node[rectangle,draw] at (5.5,1) {place \& route};
+            \node[rectangle,draw,fill=blue!20] at (6.5,0) {SDK programming};
+            \node[rectangle,draw, fill=blue!20] at (8.0,1) {FPGA};
+            %smooth, tension=0.05
+            %\draw plot [->,thick]  coordinates {(1.68,0) (1.88, 0.) (1.88,1) (2.15,1)};
+            \draw[->,thick] (1.68,0) -- (1.88, 0) -- (1.88,1) -- (2.15,1);
+            \draw[->,thick] (1.65,1) -- (2.15,1);
+            \draw[->,thick] (3.87,1) -- (4.23,1);
+            \draw[->, thick] (6.77,1.2) -- (6.97,1.2) -- (6.97, 0.5) -- (4.2,0.5) -- (4.2, 0) -- (4.84, 0);
+            \draw[->, thick] (8.16,0) -- (8.7,0) -- (8.7, 0.5) -- (7.1,0.5) -- (7.1, 0.9) -- (7.36,0.9);
+            \draw[->,thick] (6.77,1.2) -- (7.36,1.2);
+        \end{tikzpicture}
+    \end{center}
+
+    \pause
+    \textbf{SDK programming} If HW Description contains programmable devices (e.g. CPU)
+    \begin{itemize}
+        \item Load HW Description File and BMM file
+        \item Configure Board Support Package (e.g. Filesystem, Ethernet...)
+        \item Implement functionality in \texttt{C/C++}
+    \end{itemize}
+    
+    \pause
+    \textbf{Then} Flash Bitstream using \texttt{Vivado} \& flash microcode using \texttt{Vivado SDK} 
+
+    \textbf{Note} For some devices families (e.g. Zynq), \texttt{SDSoC} encapsulates all steps in one tool
 \end{frame}
 
 \section{Lukas}
