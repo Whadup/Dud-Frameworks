@@ -46,6 +46,7 @@ The goal is \textbf{not} to
 \end{itemize}
 You get 2-3 slides to discuss your toolchain and what you like/dislike about it.
 \end{frame}
+
 % 1. Beitrag (Beispiel)
 \section{Example Person}
 % Let's start with an eye-catcher
@@ -130,17 +131,38 @@ You get 2-3 slides to discuss your toolchain and what you like/dislike about it.
 \end{frame}
 
 \section{Lukas}
-\begin{frame}[fragile]{EyeCatcher}
+\begin{frame}[t,fragile]{Python: Sacred Experiments and Git Versioning}
+\vspace{-1.45mm}
 \begin{columns}
-\begin{column}{.3\textwidth}
-\includegraphics[width=\textwidth]{sacred}
+\begin{column}{.45\paperwidth}
+    % \includegraphics[keepaspectratio,width=\paperwidth]{trello}    
+    \includegraphics[width=\textwidth]{sacred}
 \end{column}
-\begin{column}[t]{.7\textwidth}
-Python-Gluecode in combination with Git (Reproducible Experiments) and Sacred (Archiving of Results)
+\begin{column}{.05\paperwidth}
+    
+\end{column}
+\begin{column}{.5\paperwidth}
+    What is an \alert{experiment}?
+    \begin{itemize}
+        \item Python-Script + Libraries (standard + own c++)
+        \item Parameters
+        \item Results (Standard-Output, Metrics, \emph{Files})
+    \end{itemize}
+    Sacred logs
+    \begin{itemize}
+        \item git status (commit-hash + patch)
+        \item python status (version, maybe libaries?)
+        \item standard output (+ regex-metrics)
+        \item metrics via logging functions
+    \end{itemize}
+    in a database. 
+
+    There are various \alert{front-ends} to this database.
+    \vspace{1cm}
 \end{column}
 \end{columns}
-
 \end{frame}
+
 \begin{frame}[t,fragile]{Review}
 \end{frame}
 \begin{frame}[fragile]{Resources}
