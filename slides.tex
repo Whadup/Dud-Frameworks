@@ -286,28 +286,28 @@ You get 2-3 slides to discuss your toolchain and what you like/dislike about it.
 \begin{frame}[t,fragile]{Python: Sacred Experiments and Git Versioning}
 \vspace{-1.45mm}
 \begin{columns}
-\begin{column}{.45\paperwidth}
+\begin{column}{.4\paperwidth}
     % \includegraphics[keepaspectratio,width=\paperwidth]{trello}    
     \includegraphics[width=\textwidth]{sacred}
 \end{column}
 \begin{column}{.05\paperwidth}
     
 \end{column}
-\begin{column}{.5\paperwidth}
+\begin{column}{.55\paperwidth}
     What is an \alert{experiment}?
     \begin{itemize}
-        \item Python-Script + Libraries (standard + own c++)
-        \item Parameters
-        \item Results (Standard-Output, Metrics, \emph{Files})
+        \item python-script + libraries (standard + own c++)
+        \item parameters
+        \item results (standard-output, metrics, \emph{files?})
     \end{itemize}
     Sacred logs
     \begin{itemize}
         \item git status (commit-hash + patch)
-        \item python status (version, maybe libaries?)
+        \item python status (version, \emph{libraries?})
         \item standard output (+ regex-metrics)
         \item metrics via logging functions
     \end{itemize}
-    in a database. 
+    in a MongoDB database. 
 
     There are various \alert{front-ends} to this database.
     \vspace{1cm}
@@ -315,7 +315,56 @@ You get 2-3 slides to discuss your toolchain and what you like/dislike about it.
 \end{columns}
 \end{frame}
 
+\begin{frame}[t]{Frontend (SacredBoard)}
+\vspace{-1.45mm}
+\begin{columns}[t]
+\begin{column}{\paperwidth}
+    \hspace{.125\paperwidth}
+    \includegraphics[keepaspectratio,width=.75\paperwidth]{board}          
+\end{column}
+    \end{columns}
+\end{frame}
+
 \begin{frame}[t,fragile]{Review}
+\begin{columns}[T]
+    \begin{column}{.5\textwidth}
+        \begin{alertblock}{Pro}
+            This workflow allows to
+            \vspace{-2mm}
+            \begin{itemize}
+                \item run large quantities of experiments
+                \item search and find persistently stored runs
+                \item inspect plots of metrics
+            \end{itemize}
+            while ensuring
+            \vspace{-2mm}
+            \begin{itemize}
+                \item an unambiguous link between code and results
+                \item that nothing that is printed is lost
+            \end{itemize}   
+        \end{alertblock}
+    \end{column}
+    
+    \begin{column}{.5\textwidth}    
+        \begin{block}{Contra}
+            \begin{itemize}
+                \item How to handle larger result-files like processed data or models?
+                \item Still work to get from preliminary visualization to camera-ready figure
+            \end{itemize}
+        \end{block}
+    \end{column}
+    
+\end{columns}
+\pause
+\metroset{block=fill}
+\begin{block}{Summary}
+     Sustainable development and testing of machine learning methods developed in any language/framework that can be wrapped in python.
+\end{block}
+\metroset{block=transparent}
+               
+
+
+
 \end{frame}
 \begin{frame}[fragile]{Resources}
 \begin{tabular}{ll}
