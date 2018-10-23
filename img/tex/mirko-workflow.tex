@@ -1,0 +1,138 @@
+\definecolor{yaml-bg}{HTML}{001B33}
+\definecolor{yaml-prop}{HTML}{FF9D00}
+\definecolor{yaml-str}{HTML}{3AD906}
+\definecolor{yaml-num}{HTML}{FF0044}
+\definecolor{tex-kw}{HTML}{F00000}
+\definecolor{tex-env}{HTML}{5423D0}
+\definecolor{tex-math}{HTML}{00A000}
+
+% docker fill
+\uncover<1->{%
+  \fill[pattern=north east lines, pattern color=tu05light, rounded corners] (1.2,1.8) rectangle (6.6,-2.6)
+    node[above left, anchor=south east, black!80] {\footnotesize Docker};
+}
+
+% meta-config
+\uncover<2->{%
+  \begin{scope}[scale=.78, transform shape, local bounding box=meta]
+    \node[draw=gray, semithick, rectangle, fill=yaml-bg, text width=2cm, rounded corners, font=\ttfamily] at (0,0) {%
+      \setlength{\baselineskip}{8pt}%
+      \textcolor{yaml-prop}{\bfseries a\_1:} \textcolor{yaml-num}{1.0}\\[2pt]
+      \textcolor{yaml-prop}{\bfseries dataset:}\\[1pt]
+      \textcolor{white}{~~-} \textcolor{yaml-str}{fact}\\
+      \textcolor{white}{~~-} \textcolor{yaml-str}{magic}
+      \par % applies baselineskip to all lines
+    };
+  \end{scope}
+  \node[below = 4mm, font=\small, align=center, text width=3cm] (metalab) at (meta.south) {Meta-Config\\[-2pt]\scriptsize(YAML)};
+}
+
+% job configs
+\uncover<1->{%
+  \begin{scope}[scale=.75, transform shape, shift={(3.25,-.1)}, local bounding box=jobs]
+    \node[draw=gray, semithick, rectangle, fill=yaml-bg, text width=2.2cm, rounded corners, font=\ttfamily] at (.2,.2) {%
+      \setlength{\baselineskip}{8pt}%
+      \textcolor{yaml-prop}{\bfseries a\_1:} \textcolor{yaml-num}{1.0}\\[2pt]
+      \textcolor{yaml-prop}{\bfseries data:} \textcolor{yaml-str}{magic}
+      \par % applies baselineskip to all lines
+    };
+    \node[draw=gray, semithick, rectangle, fill=yaml-bg, text width=2.2cm, rounded corners, font=\ttfamily] at (0,0) {%
+      \setlength{\baselineskip}{8pt}%
+      \textcolor{yaml-prop}{\bfseries a\_1:} \textcolor{yaml-num}{1.0}\\[2pt]
+      \textcolor{yaml-prop}{\bfseries data:} \textcolor{yaml-str}{fact}
+      \par % applies baselineskip to all lines
+    };
+  \end{scope}
+  \node[below, font=\small, align=center, text width=3cm] (joblab) at (jobs.south|-metalab.north) {Job Configs\\[-2pt]\scriptsize(YAML)};
+}
+
+% spectra
+\uncover<1->{%
+  \begin{scope}[scale=.85, transform shape, shift={(5.25,-.7)}, local bounding box=analysis]
+    \begin{scope}[anchor=north east, shift={(.18,.18)}]
+      \input{img/tex/comparison_magic_uniform_f_dsea_run_NO_LABELS}
+    \end{scope}
+    \begin{scope}[anchor=north east, shift={(0,0)}]
+      \input{img/tex/comparison_magic_uniform_f_dsea_run}
+    \end{scope}
+  \end{scope}
+  \node[below, font=\small, align=center, text width=3cm] at (analysis.south|-metalab.north) {Analysis Results\\[-2pt]\scriptsize(CSV)};
+}
+
+% metrics
+\uncover<3->{%
+  \begin{scope}[scale=.75, transform shape, shift={(10.25,-.1)}, local bounding box=metrics]
+    \node at (0,0) {%
+      \scriptsize
+      \setlength{\tabcolsep}{4pt}
+      \renewcommand{\arraystretch}{1.12}
+      \begin{tabular}{c|c|c}
+	{\bf data} & {\bf k} & {\bf EMD} \\
+	\hline
+	fact & 1 & 0.12 \\[-2pt]
+	fact & 2 & 0.08 \\[-2pt]
+	magic & 1 & 0.14 \\[-2pt]
+	\vdots & \vdots & \vdots
+      \end{tabular}
+    };
+  \end{scope}
+  \node[below, font=\small, align=center, text width=3cm] at (metrics.south|-metalab.north) {Metrics\\[-2pt]\scriptsize(CSV)};
+}
+
+% tex code
+\uncover<4->{%
+  \begin{scope}[scale=.8, transform shape, shift={(12.75,-.2)}, local bounding box=plot]
+    \node[text width=2.4cm, font=\ttfamily, fill=lightgray!66, rounded corners, inner sep=6pt] at (0,0) {%
+      \scriptsize
+      \setlength{\baselineskip}{-0pt}%
+      \textcolor{tex-kw}{\textbackslash begin}\{\textcolor{tex-env}{axis}\}[\\
+      ~~ylabel = \{\textcolor{tex-math}{\$f\$}\},\\
+      ~~xmin = \{1.59\},\\
+      ~~xmax = \{4.40\},\\[3pt]
+      ~~\dots
+      \par
+    };
+  \end{scope}
+  \node[below, font=\small, align=center, text width=3cm] (plotlab) at (plot.south|-metalab.north) {Plot\\[-2pt]\scriptsize(TeX)};
+  \node[below=3mm, rotate=-9, font=\small\bfseries, align=center, text width=3cm, tu01] at (plotlab.south) {versioning info\\embedded!};
+}
+
+% plots / paper
+\uncover<5->{%
+  \begin{scope}[shift={(12.65,-.06)}, local bounding box=paper]
+    \node[inner sep=0pt] at (0,0) {%
+      \includegraphics[scale=.16]{img/tex/embed}
+    };
+  \end{scope}
+  \node[below, font=\small, align=center, text width=3cm] at (paper.south|-metalab.north) {Paper\\[-2pt]\scriptsize(PDF)};
+}
+
+% arrows
+\uncover<2->{%
+  \draw[thick] ($(meta.north)+(15pt,2pt)$) edge[->, bend left=50]
+    node[pos=.45, above, font=\footnotesize] {split} ($(jobs.north)+(-15pt,2pt)$);
+}
+\uncover<1->{%
+  \draw[thick] ($(jobs.north)+(15pt,2pt)$) edge[->, bend left=50]
+    node[pos=.6, above, font=\footnotesize]  {run experiments} ($(analysis.north)+(-15pt,2pt)$);
+}
+\uncover<3->{%
+  \draw[thick] ($(analysis.north)+(20pt,2pt)$) edge[->, bend left=50]
+    node[pos=.5, above, font=\footnotesize]  {evaluate} ($(metrics.north)+(-10pt,2pt)$);
+}
+\uncover<4->{%
+  \draw[thick] ($(metrics.north)+(15pt,2pt)$) edge[->, bend left=50]
+    node[pos=.5, above, font=\footnotesize]  {aggregate} ($(plot.north)+(-20pt,2pt)$);
+}
+\uncover<5->{%
+  \draw[thick] ($(plot.north)+(15pt,2pt)$) edge[->, bend left=50]
+    node[pos=.5, above, font=\footnotesize]  {embed} ($(paper.north)+(-15pt,2pt)$);
+}
+
+% workflow
+\uncover<6->{%
+  \draw[<-, ultra thick] ($(jobs.south)+(0,-25mm)$) -- ($(jobs.south)+(0,-30mm)$)
+    node[below=1mm, text width=4cm, align=center] (pushlab) {push\\code \& configs};
+  \draw[->, ultra thick] ($(jobs.south)+(2.75,-25mm)$) -- ($(jobs.south)+(2.75,-30mm)$)
+    node[below=1mm, text width=4cm, align=center] {pull\\results};
+}

@@ -1,0 +1,199 @@
+\documentclass[aspectratio=169,10pt]{beamer}
+
+\usetheme[progressbar=frametitle,noslidenumbers]{metropolis}
+\usepackage{appendixnumberbeamer}
+
+\usepackage{booktabs}
+\usepackage[scale=2]{ccicons}
+
+\usepackage{tikz}
+\usetikzlibrary{patterns,arrows,calc}
+
+\usepackage{pgfplots}
+\usepgfplotslibrary{dateplot,fillbetween}
+\usepackage[super]{nth}
+\usepackage{xspace}
+\usepackage{url}
+\newcommand{\themename}{\textbf{\textsc{metropolis}}\xspace}
+
+\input{img/tex/colors}
+\input{img/tex/styles}
+
+\title{Frameworks, Tools and Workflows}
+\subtitle{and their impact on science}
+% \date{\today}
+\date{October \nth{25}, 2018}
+\author{Lukas Pfahler}
+\institute{TU Dortmund University, Chair for Artificial Intelligence}
+\titlegraphic{\hfill\includegraphics[height=8mm]{tu-do-logo.pdf}}
+
+\begin{document}
+
+\maketitle
+\section{ReadMe}
+\begin{frame}{Intention}
+Goal of this DuD is to
+\begin{itemize}
+    \item present tools or frameworks you use frequently
+    \item present how you use them: \textbf{Characteristic Workflows}
+    \item discuss how they align with the principles of good research (correctness, reproducibility, documentation, collaboration, rapid-prototyping, ...)
+\end{itemize}
+The goal is \textbf{not} to
+\begin{itemize}
+    \item preach or proselytize
+    \item bash other tools, workflows or ideas
+\end{itemize}
+You get 2-3 slides to discuss your toolchain and what you like/dislike about it.
+\end{frame}
+% 1. Beitrag (Beispiel)
+\section{Example Person}
+% Let's start with an eye-catcher
+\begin{frame}[fragile]{RapidMiner}
+\includegraphics[width=\linewidth]{rapidminer.png}
+\end{frame}
+
+\begin{frame}[t,fragile]{Review}
+
+    \begin{columns}[t]
+    \begin{column}{0.5\textwidth}
+    \begin{block}{Convenience}
+        Has all the building blocks of routine machine learning tasks:
+        \begin{itemize}
+            \item Data Import, Filtering and Normalization
+            \item Standard Machine Learning Methods
+            \item Validation and Visualization
+        \end{itemize}
+        Implementing new methods is painful and under-documented.
+    \end{block}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+    \begin{block}{Reproducibility}
+        Let's write some stuff
+        \begin{itemize}
+        \item Exchangable XML specifications of data mining processes
+        \item No Version Control of Process Files $\rightarrow$ Manual Versioning via FileNames
+        \end{itemize}
+    \end{block}
+    
+    \end{column}
+    \end{columns}
+    \hfill
+    %\metroset{block=fill}
+    %\begin{columns}\begin{column}{\textwidth}
+    \begin{alertblock}{Takeaway Message}
+        Rapidminer offers you the possibility to quickly evaluate the performance of a wide range of standard methods on a new data mining task.
+    \end{alertblock}
+    %\end{column}\end{columns}
+\end{frame}
+
+%Reihenfolge: Nach Büros, von Osten nach Westen und sekundär von Süden nach Norden
+%Feel free to suggest changes
+\section{Amal}
+\begin{frame}[fragile]{EyeCatcher}
+\end{frame}
+\begin{frame}[t,fragile]{Review}
+\end{frame}
+
+\section{Katharina}
+\begin{frame}[fragile]{EyeCatcher}
+\end{frame}
+\begin{frame}[t,fragile]{Review}
+\end{frame}
+
+\section{Alexey}
+\begin{frame}[fragile]{EyeCatcher}
+\end{frame}
+\begin{frame}[t,fragile]{Review}
+\end{frame}
+
+\section{Mirko}
+\begin{frame}[fragile]{Julia}
+  \vspace*{2em}
+  \hspace*{.025\textwidth} % center
+  \begin{tikzpicture}
+    \input{img/tex/mirko-julia}
+  \end{tikzpicture}
+\end{frame}
+\begin{frame}[t,fragile]{Artifacts \scalebox{.85}{\enspace$\rightarrow$\enspace Reproducibility + Flexibility}}
+  \vspace*{1.5em}
+  \hspace*{-.075\textwidth} % center
+  \begin{tikzpicture}
+    \input{img/tex/mirko-workflow}
+  \end{tikzpicture}
+\end{frame}
+
+\section{Sebastian}
+\begin{frame}[fragile]{EyeCatcher}
+\end{frame}
+\begin{frame}[t,fragile]{Review}
+\end{frame}
+
+\section{Lukas}
+\begin{frame}[fragile]{EyeCatcher}
+\begin{columns}
+\begin{column}{.3\textwidth}
+\includegraphics[width=\textwidth]{sacred}
+\end{column}
+\begin{column}[t]{.7\textwidth}
+Python-Gluecode in combination with Git (Reproducible Experiments) and Sacred (Archiving of Results)
+\end{column}
+\end{columns}
+
+\end{frame}
+\begin{frame}[t,fragile]{Review}
+\end{frame}
+\begin{frame}[fragile]{Resources}
+\begin{tabular}{ll}
+    Sacred:&\url{https://github.com/IDSIA/sacred}\\
+    Omni-Board:& \url{https://github.com/vivekratnavel/omniboard}\\
+\end{tabular}
+\end{frame}
+
+\section{Sibylle}
+\begin{frame}[fragile]{Julia + Jupyter Notebook}
+\begin{columns}
+\begin{column}{0.7\textwidth}
+\includegraphics[width=\textwidth]{julia.png}
+\end{column}
+\begin{column}{0.25\textwidth}
+PROs
+\begin{itemize}
+    \item Readability
+    \item No installation necessary
+    \item Python integration
+\end{itemize}
+CONs
+\begin{itemize}
+    \item Syntax changes with each version
+    \item Performance issues
+\end{itemize}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}[t,fragile]{Workflow}
+\begin{enumerate}
+    \item Data preprocessing, generation of synthetic experiments: IJulia script
+    \item Algorithm implementation: Cublas C++, Python
+    \item Experiment evaluation: IJulia script
+\end{enumerate}
+\end{frame}
+
+\section{Thomas}
+\begin{frame}[fragile]{EyeCatcher}
+\end{frame}
+\begin{frame}[t,fragile]{Review}
+\end{frame}
+
+
+\section{Discussion}
+\begin{frame}[standout]{Discussion}
+\begin{center}
+    \LARGE{Although I assume it is already way past noon, maybe we still want to discuss some more?}
+\end{center}
+\end{frame}
+
+
+
+
+\end{document}

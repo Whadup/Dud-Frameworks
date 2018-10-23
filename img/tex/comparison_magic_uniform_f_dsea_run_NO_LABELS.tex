@@ -1,0 +1,83 @@
+% 
+% This file was generated with Res.smearing_histogram("res/spectra/comparison_magic_uniform.csv"res/metrics/comparison_magic_uniform.csv")
+% 
+% git commit = c084a7e45bb1f3afd5999b1c80a6c3f4be207858
+% git origin = git@bitbucket.org:mbunse/mt-exp.git
+% uncommited changes = false
+% 
+\tikzstyle{every node} = [font=\small]
+
+\begin{axis}[
+  ylabel = {},
+  xmin = {1.599999999999},
+  xmax = {4.4000000000010004},
+  xlabel = {},
+  histogram axis,
+  ymode = log,
+  log origin y=infty,
+  scale = .25,
+  yticklabels = \empty,
+  xticklabels = \empty,
+  ylabel style = {rotate = 270, at = {(-.025,.5)}},
+  xlabel style = {at = {(.5,-.025)}}
+]
+%   width = .75*\axisdefaultwidth,
+%   height = .675*\axisdefaultheight,
+
+% \addplot+[
+%   histogram plot,
+%   black,
+%   thin,
+%   name path = truth,
+%   dash pattern={on 2.25pt off 0.75pt}
+% ]
+% coordinates {
+%   (1.599999999999, 0.0)
+%   (1.6, 0.06451926499999999)
+%   (1.8333333333333333, 0.1221511)
+%   (2.066666666666667, 0.1482697)
+%   (2.3, 0.1439983)
+%   (2.533333333333333, 0.1244045)
+%   (2.7666666666666666, 0.10419795000000001)
+%   (3.0, 0.08582171499999999)
+%   (3.2333333333333334, 0.06412323500000001)
+%   (3.466666666666667, 0.050539829999999994)
+%   (3.7, 0.037032365)
+%   (3.933333333333333, 0.027978120000000002)
+%   (4.166666666666667, 0.026964024999999996)
+%   (4.4, 0.026964024999999996)
+%   (4.4000000000010004, 0.0)
+% };
+% \addlegendentry{$\mathbf{f}$}
+
+\addplot+[
+  histogram plot,
+  tu02,
+  very  thick,
+  name path = estimate
+]
+coordinates {
+  (1.599999999999, 0.0)
+  (1.6, 0.07563379)
+  (1.8333333333333333, 0.11441804999999998)
+  (2.066666666666667, 0.14546300000000004)
+  (2.3, 0.14178325)
+  (2.533333333333333, 0.12264900000000004)
+  (2.7666666666666666, 0.10740475000000001)
+  (3.0, 0.086949075)
+  (3.2333333333333334, 0.064010205)
+  (3.466666666666667, 0.048701285000000004)
+  (3.7, 0.03753382999999999)
+  (3.933333333333333, 0.029620479999999998)
+  (4.166666666666667, 0.025833409999999994)
+  (4.4, 0.025833409999999994)
+  (4.4000000000010004, 0.0)
+};
+% \addlegendentry{$\hat{\mathbf{f}}_\text{$\text{\sc Dsea}^+$}$}
+
+% \addplot[draw=none, fill=tu01, fill opacity=0.33] fill between[of = truth and estimate];
+
+% \legend{} % omit legend
+
+\end{axis}
+

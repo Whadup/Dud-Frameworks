@@ -1,0 +1,66 @@
+\tikzstyle{textbox} = [
+  below = 4mm,
+  inner sep = 0pt,
+  text centered
+]
+
+% dynamic vs static
+\uncover<1->{%
+  \draw[|-|, ultra thick] (0,0)
+    node[textbox, text width=24mm] (dyn) {\Large Dynamic\\[-.1em]\footnotesize e.g. Python, R,\dots}
+    -- (10,0)
+    node[textbox, text width=26mm] (stat) {\Large Static\\[-.1em]\footnotesize e.g. C++, Java,\dots}
+    node[midway, below=1mm] (jl) {};
+}
+
+% Julia
+\uncover<2->{%
+  \draw[<->, very thick, gray!66, dashed] ($(jl)+(-.8,-2mm)$) -- ($(jl)+(0,-1.2)$) -- ($(jl)+(+.8,-2mm)$);
+  \draw[<-, very thick] (jl) -- +(0,-1.2) node[below=1mm] (jl-arrow) {};
+
+  \node[
+    anchor = north west,
+    fill = lightgray!66,
+    rounded corners,
+    text width = 70mm,
+    inner sep = 5mm,
+    outer sep = 1mm
+  ] (jl-box) at (jl-arrow -| dyn.west) {%
+    \begin{columns}
+    \begin{column}{.45\textwidth}
+      \raggedleft
+      \includegraphics[width=.9\textwidth]{img/julia-logo}
+    \end{column}
+    \begin{column}{.55\textwidth}
+      {\bfseries Flexibility + Speed:}
+      \begin{itemize}
+	\item JIT compilation
+	\item optionally typed
+	\item multiple dispatch
+      \end{itemize}
+    \end{column}
+    \end{columns}
+  };
+}
+
+% packages
+\uncover<3->{%
+  \node[
+    below = 5mm,
+    anchor = north east,
+    text width = 25mm,
+    align = right,
+    inner sep = 1mm,
+    xshift = -2mm,
+    font = \bfseries
+  ] (pkg) at (jl-arrow -| stat.east) {%
+    DataFrames.jl\\
+    PyCall.jl\\
+    JuMP.jl\\
+    Pkg.jl (in v1.0)\\
+    \dots
+  };
+
+  \draw[thick, decoration={brace, mirror}, decorate] (pkg.north west) -- (pkg.south west)
+    node[left=2.5mm, midway, anchor=east, font=\bfseries] {using};
+}

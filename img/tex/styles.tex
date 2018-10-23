@@ -1,0 +1,90 @@
+% 'axis line on top' option
+\makeatletter \newcommand{\pgfplotsdrawaxis}{\pgfplots@draw@axis} \makeatother
+\pgfplotsset{axis line on top/.style={
+  axis line style = transparent,
+  ticklabel style = transparent,
+  tick style = transparent,
+  axis on top = false,
+  after end axis/.append code = {
+    \pgfplotsset{
+      axis line style = opaque,
+      ticklabel style = opaque,
+      tick style = opaque,
+      grid = none
+    }
+    \pgfplotsdrawaxis
+  }
+}}
+
+% enables animations in plots
+\tikzset{
+  invisible/.style={%
+    opacity=0,
+    mark options = {opacity=0},
+    every error bar/.append style = {opacity=0}
+  },
+  visible on/.style={alt={#1{}{invisible}}},
+  alt/.code args={<#1>#2#3}{%
+    \alt<#1>{\pgfkeysalso{#2}}{\pgfkeysalso{#3}} % \pgfkeysalso doesn't change the path
+  },
+}
+
+% elegant legend on the outside
+\pgfplotsset{outside legend/.style = {
+  legend style = {
+    draw = none,
+    fill = none,
+    at = {(1.025,.5)},
+    anchor = west,
+    row sep = .25em
+  }
+}}
+
+% default axis style
+\pgfplotsset{default axis/.style = {
+  axis line on top,
+  axis line style = {anthracite, semithick},
+  axis background/.style = {fill = white},
+  legend cell align = {left},
+  scaled y ticks = false
+}}
+
+% histograms
+\pgfplotsset{histogram axis/.style = {
+  default axis,
+  legend style = {
+    at = {(0.98,0.02)},
+    anchor = south east
+  },
+  legend cell align = left
+}}
+
+\pgfplotsset{histogram plot/.style = {
+  const plot,
+  mark = none
+}}
+
+% progress plots
+\pgfplotsset{progress axis/.style = {
+  default axis
+}}
+
+\pgfplotsset{progress plot/.style = {
+  semithick,
+  solid
+}}
+
+% marks for progress plots
+\pgfplotsset{m00/.style = {mark = none, opacity = 1, anthracite, densely dashed}}
+\pgfplotsset{m01/.style = {tu01!33, mark options = {draw=tu01, scale = 1.2, fill=white}, every error bar/.style = {tu01!66}, mark = *}}
+\pgfplotsset{m02/.style = {tu02!33, mark options = {draw=tu02, scale = 1.2, fill=white}, every error bar/.style = {tu02!66}, mark = square*}}
+\pgfplotsset{m03/.style = {tu03!33, mark options = {draw=tu03, scale = 1.2, fill=white}, every error bar/.style = {tu03!66}, mark = triangle*}}
+\pgfplotsset{m04/.style = {tu04!33, mark options = {draw=tu04, scale = 1.2, fill=white}, every error bar/.style = {tu04!66}, mark = diamond*}}
+\pgfplotsset{m05/.style = {tu05!33, mark options = {draw=tu05, scale = 1.2, fill=white}, every error bar/.style = {tu05!66}, mark = pentagon*}}
+\pgfplotsset{m06/.style = {tu06!33, mark options = {draw=tu06, scale = 1.2, fill=white}, every error bar/.style = {tu06!66}, mark = otimes*}}
+\pgfplotsset{m07/.style = {tu07!33, mark options = {draw=tu07, scale = 1.2, fill=white}, every error bar/.style = {tu07!66}, mark = oplus*}}
+\pgfplotsset{m08/.style = {tu08!33, mark options = {draw=tu08, scale = 1.2, fill=white}, every error bar/.style = {tu08!66}, mark = star*}}
+\pgfplotsset{m09/.style = {tu09!33, mark options = {draw=tu09, scale = 1.2, fill=white}, every error bar/.style = {tu09!66}, mark = x}}
+\pgfplotsset{m10/.style = {tu10!33, mark options = {draw=tu10, scale = 1.2, fill=white}, every error bar/.style = {tu10!66}, mark = +}}
+\pgfplotsset{m11/.style = {tu11!33, mark options = {draw=tu11, scale = 1.2, fill=white}, every error bar/.style = {tu11!66}, mark = |}}
+% also: 'asterisk', '-', and most of the above without '*'
