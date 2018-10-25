@@ -80,7 +80,7 @@
 }
 
 % tex code
-\uncover<4->{%
+\uncover<5->{%
   \begin{scope}[scale=.8, transform shape, shift={(12.75,-.2)}, local bounding box=plot]
     \node[text width=2.4cm, font=\ttfamily, fill=lightgray!66, rounded corners, inner sep=6pt] at (0,0) {%
       \scriptsize
@@ -98,7 +98,7 @@
 }
 
 % plots / paper
-\uncover<5->{%
+\uncover<6->{%
   \begin{scope}[shift={(12.65,-.06)}, local bounding box=paper]
     \node[inner sep=0pt] at (0,0) {%
       \includegraphics[scale=.16]{img/tex/embed}
@@ -120,19 +120,19 @@
   \draw[thick] ($(analysis.north)+(20pt,2pt)$) edge[->, bend left=50]
     node[pos=.5, above, font=\footnotesize]  {evaluate} ($(metrics.north)+(-10pt,2pt)$);
 }
-\uncover<4->{%
+\uncover<5->{%
   \draw[thick] ($(metrics.north)+(15pt,2pt)$) edge[->, bend left=50]
     node[pos=.5, above, font=\footnotesize]  {aggregate} ($(plot.north)+(-20pt,2pt)$);
 }
-\uncover<5->{%
+\uncover<6->{%
   \draw[thick] ($(plot.north)+(15pt,2pt)$) edge[->, bend left=50]
     node[pos=.5, above, font=\footnotesize]  {embed} ($(paper.north)+(-15pt,2pt)$);
 }
 
 % workflow
-\uncover<6->{%
+\uncover<4->{%
   \draw[<-, ultra thick] ($(jobs.south)+(0,-25mm)$) -- ($(jobs.south)+(0,-30mm)$)
-    node[below=1mm, text width=4cm, align=center] (pushlab) {push\\code \& configs};
+    node[below=1mm, text width=4cm, align=center] (pushlab) {push code, data \& configs};
   \draw[->, ultra thick] ($(jobs.south)+(2.75,-25mm)$) -- ($(jobs.south)+(2.75,-30mm)$)
     node[below=1mm, text width=4cm, align=center] {pull\\results};
 }
